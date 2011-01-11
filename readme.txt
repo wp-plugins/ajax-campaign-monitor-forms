@@ -4,7 +4,7 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: campaign monitor, email, subscribers, mailing list 
 Requires at least: 3.0
 Tested up to: 3.0.4
-Stable tag: 0.1
+Stable tag: 0.2
 License: GPLv3
 
 == Description ==
