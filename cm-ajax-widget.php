@@ -20,6 +20,19 @@ class CM_ajax_widget extends WP_Widget {
 		add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
 
 		add_action ( 'init', array ( &$this, 'ajax_receiver' ) );
+		add_action ( 'init', array ( &$this, 'init_actions' ) );
+	}
+
+
+
+	/**
+	 * Init actions
+	 *
+	 */
+	function init_actions() {
+		if ( ! is_admin() ) {
+			wp_enqueue_script('jquery');
+		}
 	}
 
 
