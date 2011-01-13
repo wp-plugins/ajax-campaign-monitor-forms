@@ -130,6 +130,12 @@ class CM_ajax_widget extends WP_Widget {
 
 		echo $before_widget;
 
+		if ( isset ( $instance['pretext'] ) ) {
+
+			echo htmlentities($instance['pretext']);
+
+		}
+
 		if (isset($this->result)) {
 			if ($this->result) {
 				$success_style = '';
@@ -213,6 +219,7 @@ class CM_ajax_widget extends WP_Widget {
 		$instance = $old_instance;
 
 		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['pretext'] = $new_instance['pretext'];
 		$instance['account_api_key'] = strip_tags($new_instance['account_api_key']);
 		$instance['list_api_key'] = strip_tags($new_instance['list_api_key']);
 		$instance['show_name_field'] = (bool) $new_instance['show_name_field'];
@@ -247,7 +254,8 @@ class CM_ajax_widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 
-		$title = isset($instance['title']) ? esc_attr($instance['title']) : TRUE;
+		$title = isset($instance['title']) ? esc_attr($instance['title']) : '';
+		$pretext = isset($instance['pretext']) ? esc_attr($instance['pretext']) : '';
 		$account_api_key = isset($instance['account_api_key']) ? esc_attr($instance['account_api_key']) : '';
 		$list_api_key = isset($instance['list_api_key']) ? esc_attr($instance['list_api_key']) : '';
 		$show_name_field = isset($instance['show_name_field']) ? esc_attr($instance['show_name_field']) : TRUE;
@@ -256,6 +264,9 @@ class CM_ajax_widget extends WP_Widget {
 		?>
 		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'cm_ajax'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+		<p><label for="<?php echo $this->get_field_id('pretext'); ?>"><?php _e('Text before form:', 'cm_ajax'); ?></label>
+		<textarea id="<?php echo $this->get_field_id('pretext'); ?>" name="<?php echo $this->get_field_name('pretext'); ?>"><?php echo $pretext; ?></textarea></p>
 
 		<p><label for="<?php echo $this->get_field_id('account_api_key'); ?>"><?php _e('Account API Key:', 'cm_ajax'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('account_api_key'); ?>" name="<?php echo $this->get_field_name('account_api_key'); ?>" type="text" value="<?php echo $account_api_key; ?>" /></p>
