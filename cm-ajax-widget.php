@@ -73,7 +73,7 @@ class CM_ajax_widget extends WP_Widget {
 		$settings = $this->get_settings();
 
 		if ( ! isset ( $settings[$this->number] ) || ! is_array ( $settings[$this->number] ) )
-			return FALSE;
+			return 'FAILED';
 		else
 			$settings = $settings[$this->number];
 
@@ -223,7 +223,6 @@ class CM_ajax_widget extends WP_Widget {
 		$instance['account_api_key'] = strip_tags($new_instance['account_api_key']);
 		$instance['list_api_key'] = strip_tags($new_instance['list_api_key']);
 		$instance['show_name_field'] = (bool) $new_instance['show_name_field'];
-		//$instance['client_api_key'] = strip_tags($new_instance['client_api_key']);
 
 		$this->flush_widget_cache();
 
