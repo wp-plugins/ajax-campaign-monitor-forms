@@ -13,11 +13,19 @@ A WordPress plugin that adds Ajax powered forms to allow site visitors to sign u
 
 == Installation ==
 
-
 1. Upload the plugin to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Add the widgets to your sidebar from Appearance > Widgets
-4. Add your account API key and list API key to the widget
+
+Adding a form to your sidebars
+* Add the widgets to your sidebar from Appearance > Widgets
+* Add your account API key and list API key to the widget
+* Save!
+
+Adding a form to a post or page
+* Edit the post/page
+* Click the "Campaign Monitor" button ![Screenshot of button](http://s.wordpress.org/extend/plugins/ajax-campaign-monitor-forms/screenshot-5.png?r=333233)
+* Enter your account API Key and list API key
+* Save!
 
 == Frequently Asked Questions ==
 
