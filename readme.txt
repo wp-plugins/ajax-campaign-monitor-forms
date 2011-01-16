@@ -50,7 +50,7 @@ The widget falls back to a standard web page request, but will still keep users 
 == Changelog ==
  
 = 0.4 = 
-Add button to the editor to allow shortcode to be inserted into posts (BETA!!!)
+Add button to the editor to allow shortcode to be inserted into posts (Beta - please let me know if this works for you!)
 
 = 0.3 = 
 Fix compatability with some themes
