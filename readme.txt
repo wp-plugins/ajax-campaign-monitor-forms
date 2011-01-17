@@ -4,7 +4,7 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: campaign monitor, email, subscribers, mailing list 
 Requires at least: 3.0
 Tested up to: 3.0.4
-Stable tag: 0.4
+Stable tag: 0.5
 License: GPLv3
 
 == Description ==
@@ -49,6 +49,9 @@ The widget falls back to a standard web page request, but will still keep users 
 
 == Changelog ==
  
+= 0.5 =
+Small bugfixes, and allow user to pick from list of existing shortcodes
+
 = 0.4 = 
 Add button to the editor to allow shortcode to be inserted into posts (Beta - please let me know if this works for you!)
 
