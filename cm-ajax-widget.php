@@ -132,7 +132,7 @@ class CM_ajax_widget extends WP_Widget {
 
 		if ( isset ( $instance['pretext'] ) ) {
 
-			echo htmlentities($instance['pretext']);
+			echo $instance['pretext'];
 
 		}
 
