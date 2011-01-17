@@ -159,8 +159,11 @@ class CM_ajax_shortcode {
 		// Create a new shortcode id
 
 		$current_shortcodes[] = Array ( 'account_api_key' => $_POST['cm_ajax_tinymce_subscriber_account_api_key'],
-										'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'],
-										'show_name_field' => $_POST['cm_ajax_tinymce_subscriber_show_name_field'] );
+										'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'] );
+
+		if ( isset ( $_POST['cm_ajax_tinymce_subscriber_show_name_field']) ) {
+			$current_shortcodes['show_name_field'] = $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ;
+		}
 
 		$matched_shortcode = count($current_shortcodes) - 1 ;
 
@@ -212,7 +215,8 @@ class CM_ajax_shortcode {
 		<form method="POST" id="cm_ajax_shortcode_<?php echo $shortcode_id; ?>">
 		<input type="hidden" name="cm_ajax_shortcode_action" value="subscribe">
 		<input type="hidden" name="cm_ajax_shortcode" value="<?php echo $shortcode_id; ?>">
-		<?php if (!isset($settings['show_name_field']) || $settings['show_name_field']) :  ?>
+		<?php if ( $settings['show_name_field'] != '' &&
+				   $settings['show_name_field'] != null ) :  ?>
 				<p><label for="cm-ajax-name"><?php _e('Name:', 'cm_ajax'); ?></label>
 				<input class="widefat" id="cm-ajax-name" name="cm-ajax-name" type="text" /></p>
 		<?php endif; ?>
