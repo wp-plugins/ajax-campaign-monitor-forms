@@ -146,6 +146,15 @@ class CM_ajax_shortcode {
 				 && $shortcode['list_api_key'] == $_POST['cm_ajax_tinymce_subscriber_list_api_key']
 				 && $shortcode['show_name_field'] == $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ) {
 
+					// Support for adding list names to the array if the shortcode was created
+					// with plugin version < 0.5
+					if ( ! isset ( $shortcode['list_name'] ) || $shortcode['list_name'] == 'Unknown List' || empty($shortcode['list_name']) ) {
+
+						$current_shortcodes[$shortcode_id]['list_name'] = $this->get_list_name($shortcode['account_api_key'], $shortcode['list_api_key']);
+						update_option ( 'cm_ajax_shortcodes', $current_shortcodes ) ;
+
+					}
+
 					// Found an existing shortcode - return it
 					echo $shortcode_id;
 					return;
@@ -159,13 +168,15 @@ class CM_ajax_shortcode {
 		// Create a new shortcode id
 
 		$current_shortcodes[] = Array ( 'account_api_key' => $_POST['cm_ajax_tinymce_subscriber_account_api_key'],
-										'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'] );
-
-		if ( isset ( $_POST['cm_ajax_tinymce_subscriber_show_name_field']) ) {
-			$current_shortcodes['show_name_field'] = $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ;
-		}
+										'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'],
+										'list_name' => $this->get_list_name ( $_POST['cm_ajax_tinymce_subscriber_account_api_key'], $_POST['cm_ajax_tinymce_subscriber_list_api_key'] ) );
 
 		$matched_shortcode = count($current_shortcodes) - 1 ;
+
+		if ( isset ( $_POST['cm_ajax_tinymce_subscriber_show_name_field']) ) {
+			$current_shortcodes[$matched_shortcode]['show_name_field'] = $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ;
+		}
+
 
 		update_option ('cm_ajax_shortcodes', $current_shortcodes);
 
@@ -311,6 +322,21 @@ class CM_ajax_shortcode {
 		return;
 	}
 
+
+
+	function get_list_name ($account_api_key, $list_api_key) {
+
+		$cm = new CS_REST_Lists($list_api_key, $account_api_key);
+
+		$result = $cm->get ();
+		
+		if ($result->was_successful()) {
+			return $result->response->Title;
+		} else {
+			return 'Unknown List';
+		}
+
+	}
 
 
 

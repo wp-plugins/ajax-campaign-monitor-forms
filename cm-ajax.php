@@ -10,6 +10,7 @@ License: GPLv3
 */
 
 require_once ( 'createsend-php/csrest_subscribers.php' );
+require_once ( 'createsend-php/csrest_lists.php' );
 
 require_once ( 'cm-ajax-widget.php' );
 require_once ( 'cm-ajax-shortcode.php' );

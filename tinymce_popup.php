@@ -5,6 +5,34 @@
 </head>
 
 <body>
+<?php
+		$current_shortcodes = get_option ('cm_ajax_shortcodes');
+
+		if ( isset ( $current_shortcodes ) && is_array ( $current_shortcodes ) ) {
+
+			echo "<h2>Existing Shortcode</h2>";
+
+			foreach ($current_shortcodes as $shortcode_id => $shortcode_settings) {
+
+				if ( ! isset ( $shortcode_settings['list_name'] ) ) {
+					$shortcode_settings['list_name'] = 'Unknown List';
+				}
+				echo '<ul>';
+				echo '<li><a class="shortcodelist" name="id='.$shortcode_id.'">'.$shortcode_settings['list_name'];
+				if ( isset ( $shortcode_settings['show_name_field'] ) && $shortcode_settings['show_name_field'] == 'on' ) {
+					echo " (with name field)";
+				} else {
+					echo " (no name field)";
+				}
+				echo "</a></li>";
+				echo "</ul>";
+
+			}
+
+		}
+?>
+
+	<h2>New Shortcode</h2>
 	<form id="cm_ajax_tinymce_subscriber" action="" method="post">
 
 		<input type="hidden" name="cm_ajax_response" value="ajax">
@@ -29,8 +57,14 @@
 	</form>
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
+			jQuery('.shortcodelist').click(function() {
+				var shortcode = '[cm_ajax_subscribe ';
+				shortcode = shortcode+jQuery(this).attr("name");
+				shortcode = shortcode+']';
+                tinyMCEPopup.execCommand("mceInsertContent", false, shortcode);
+                tinyMCEPopup.close();
+			});
 			jQuery('form#cm_ajax_tinymce_subscriber input:submit').click(function() {
-
 				jQuery('form#cm_ajax_tinymce_subscriber input:submit').hide();
 				jQuery('form#cm_ajax_tinymce_subscriber .cm_ajax_loading').show();
 				jQuery.ajax(
