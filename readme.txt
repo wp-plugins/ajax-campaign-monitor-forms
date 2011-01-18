@@ -3,7 +3,7 @@ Contributors: leewillis77
 Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&utm_medium=www&utm_campaign=ajax-campaign-monitor-forms
 Tags: campaign monitor, email, subscribers, mailing list 
 Requires at least: 3.0
-Tested up to: 3.0.4
+Tested up to: 3.1
 Stable tag: 0.5
 License: GPLv3
 
@@ -46,6 +46,7 @@ The widget falls back to a standard web page request, but will still keep users 
 3. Ajax submission
 4. Feedback
 5. Inserting a shortcode
+6. Choosing a shortcode / creating a new shortcode
 
 == Changelog ==
  
