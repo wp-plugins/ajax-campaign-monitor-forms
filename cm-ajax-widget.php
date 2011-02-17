@@ -125,10 +125,10 @@ class CM_ajax_widget extends WP_Widget {
 		ob_start();
 		extract($args);
 
+		echo $before_widget;
+
 		$title = apply_filters('widget_title', empty ( $instance['title'] ) ? __('Newsletter Signup', 'cm_ajax') : $instance['title'], $instance, $this->id_base);
 		echo $before_title . $title . $after_title;
-
-		echo $before_widget;
 
 		if ( isset ( $instance['pretext'] ) ) {
 
