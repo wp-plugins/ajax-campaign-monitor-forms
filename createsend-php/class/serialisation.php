@@ -1,6 +1,8 @@
 <?php
 
-require_once 'services_json.php';
+if(!class_exists('Services_JSON')) {
+	require_once 'services_json.php';
+}
 
 class CS_REST_SerialiserFactory {
     function get_available_serialiser($log) {
