@@ -1,5 +1,6 @@
 <html>
 <head>
+<?php wp_enqueue_script('jquery'); ?>
 <?php wp_head(); ?>
 <script type="text/javascript" src="<?php echo site_url().'/wp-includes/js/tinymce/tiny_mce_popup.js'; ?>"></script>
 </head>
