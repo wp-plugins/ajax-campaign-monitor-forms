@@ -73,7 +73,7 @@ class CM_ajax_widget extends WP_Widget {
 		$settings = $this->get_settings();
 
 		if ( ! isset ( $settings[$this->number] ) || ! is_array ( $settings[$this->number] ) )
-			return 'FAILED';
+			return 'FAILED\nNo Settings';
 		else
 			$settings = $settings[$this->number];
 
@@ -94,7 +94,9 @@ class CM_ajax_widget extends WP_Widget {
 			if ($result->was_successful()) {
 				echo 'SUCCESS';
 			} else {
-				echo 'FAILED';
+				echo 'FAILED\n';
+				echo ($result->response->Code).': ';
+				echo ($result->response->Message);
 			}
 		} else {
 			$this->result = $result->was_successful();
