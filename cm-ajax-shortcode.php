@@ -32,7 +32,7 @@ class CM_ajax_shortcode {
      */
 	function init() {
 
-		if ( ! current_user_can ( 'edit_post' ) )
+		if ( ! current_user_can ( 'edit_posts' ) )
 			return;
 
 		add_shortcode ( 'cm_ajax_subscribe', array ( &$this, 'cm_ajax_subscribe' ) );
