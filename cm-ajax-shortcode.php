@@ -32,7 +32,7 @@ class CM_ajax_shortcode {
      */
 	function init() {
 
-		if ( ! current_user_can ( 'edit_post' ) )
+		if ( ! current_user_can ( 'edit_posts' ) )
 			return;
 
 		add_shortcode ( 'cm_ajax_subscribe', array ( &$this, 'cm_ajax_subscribe' ) );
@@ -76,7 +76,7 @@ class CM_ajax_shortcode {
 	 */
 	function ajax_receiver() {
 
-		if ( ! current_user_can ( 'edit_post' ) )
+		if ( ! current_user_can ( 'edit_posts' ) )
 			return;
 
 		if ( ! isset ( $_REQUEST['cm_ajax_shortcode'] ) )
@@ -112,7 +112,7 @@ class CM_ajax_shortcode {
 	 */
 	function render_tinymce_popup() {
 
-		if ( ! current_user_can ( 'edit_post' ) )
+		if ( ! current_user_can ( 'edit_posts' ) )
 			return;
 
 		include_once('tinymce_popup.php');
@@ -127,7 +127,7 @@ class CM_ajax_shortcode {
 	 */
 	function generate_shortcode() {
 
-		if ( ! current_user_can ( 'edit_post' ) )
+		if ( ! current_user_can ( 'edit_posts' ) )
 			return;
 
 		if ( ! wp_verify_nonce ( $_POST['_wpnonce'], 'cm_ajax_generate_shortcode' ) )
