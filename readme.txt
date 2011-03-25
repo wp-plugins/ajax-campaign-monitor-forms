@@ -39,6 +39,11 @@ Yes, but it's beta - please let me know if it works for you! Just click the Camp
 = What if users don't have Javascript enabled? =
 The widget falls back to a standard web page request, but will still keep users on your site, unlike the normal CampaignMonitor forms.
 
+= I've published the form, but it won't sign users up =
+I'm working on a fuller guide to debugging these problems, but the most common faults are:
+* PHP needs to be 5.2 or above
+* Make sure you've entered the Account ID and List ID, not the Client ID
+
 == Screenshots ==
 
 1. Configuration
