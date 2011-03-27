@@ -72,10 +72,11 @@ class CM_ajax_widget extends WP_Widget {
 
 		$settings = $this->get_settings();
 
-		if ( ! isset ( $settings[$this->number] ) || ! is_array ( $settings[$this->number] ) )
+		if ( ! isset ( $settings[$this->number] ) || ! is_array ( $settings[$this->number] ) ) {
 			return 'FAILED\nNo Settings';
-		else
+		} else {
 			$settings = $settings[$this->number];
+		}
 
 		$cm = new CS_REST_Subscribers($settings['list_api_key'], $settings['account_api_key']);
 

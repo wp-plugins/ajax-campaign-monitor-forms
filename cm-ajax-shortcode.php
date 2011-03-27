@@ -32,12 +32,9 @@ class CM_ajax_shortcode {
      */
 	function init() {
 
-		if ( ! current_user_can ( 'edit_posts' ) )
-			return;
-
 		add_shortcode ( 'cm_ajax_subscribe', array ( &$this, 'cm_ajax_subscribe' ) );
 
-		if ( get_user_option('rich_editing') ) {
+		if ( current_user_can ( 'edit_posts' ) && get_user_option('rich_editing') ) {
 			add_filter ( 'mce_buttons', array ( &$this, 'register_button' ) );  
 			add_filter ( 'mce_external_plugins', array (&$this, 'add_plugin' ) );  
 		}
@@ -75,9 +72,6 @@ class CM_ajax_shortcode {
 	 *
 	 */
 	function ajax_receiver() {
-
-		if ( ! current_user_can ( 'edit_posts' ) )
-			return;
 
 		if ( ! isset ( $_REQUEST['cm_ajax_shortcode'] ) )
 			return;
@@ -292,10 +286,11 @@ class CM_ajax_shortcode {
 		$shortcode_id = $_REQUEST['cm_ajax_shortcode'];
 		$shortcode_options = get_option ( 'cm_ajax_shortcodes' ) ;
 
-		if ( ! isset ( $shortcode_options[$shortcode_id] ) )
-			return ' ';
-
-		$settings = $shortcode_options[$shortcode_id];
+		if ( ! isset ( $shortcode_options[$shortcode_id] ) ) {
+			return 'FAILED\nNo Settings';
+		} else {
+			$settings = $shortcode_options[$shortcode_id];
+		}
 
 		$cm = new CS_REST_Subscribers($settings['list_api_key'], $settings['account_api_key']);
 
@@ -315,6 +310,8 @@ class CM_ajax_shortcode {
 				echo 'SUCCESS';
 			} else {
 				echo 'FAILED';
+				echo ($result->response->Code).': ';
+				echo ($result->response->Message);
 			}
 		} else {
 			$this->result = $result->was_successful();
