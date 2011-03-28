@@ -4,7 +4,7 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: campaign monitor, email, subscribers, mailing list 
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.7.4
+Stable tag: 0.8
 License: GPLv3
 
 == Description ==
@@ -40,9 +40,11 @@ Yes, but it's beta - please let me know if it works for you! Just click the Camp
 The widget falls back to a standard web page request, but will still keep users on your site, unlike the normal CampaignMonitor forms.
 
 = I've published the form, but it won't sign users up =
-I'm working on a fuller guide to debugging these problems, but the most common faults are:
+The most common faults are:
 * PHP needs to be 5.2 or above
 * Make sure you've entered the Account ID and List ID, not the Client ID 
+
+Check out the ![debugging guide](http://www.leewillis.co.uk/debugging-problems-campaign-monitor-widgets/) to find out exactly what your problem might be.
 
 == Screenshots ==
 
@@ -54,6 +56,9 @@ I'm working on a fuller guide to debugging these problems, but the most common f
 6. Choosing a shortcode / creating a new shortcode
 
 == Changelog ==
+
+= 0.8 =
+More fixes for the shortcode forms
 
 = 0.7.4 =
 Fix problem with shortcode button
