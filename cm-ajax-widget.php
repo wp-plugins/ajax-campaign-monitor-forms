@@ -43,10 +43,10 @@ class CM_ajax_widget extends WP_Widget {
 	 */
 	function ajax_receiver() {
 
-		if ( ! isset ( $_POST['cm_ajax_action_'.$this->number] ) )
+		if ( ! isset ( $_POST['cm_ajax_action'] ) )
 			return;
 
-		switch ( $_POST['cm_ajax_action_'.$this->number] ) {
+		switch ( $_POST['cm_ajax_action'] ) {
 
 			case 'subscribe':
 				$this->subscribe();
@@ -70,12 +70,12 @@ class CM_ajax_widget extends WP_Widget {
 	 */
 	function subscribe() {
 
-		$settings = $this->get_settings();
+		$settings = get_option ( $this->option_name );
 
-		if ( ! isset ( $settings[$this->number] ) || ! is_array ( $settings[$this->number] ) ) {
-			return 'FAILED\nNo Settings';
+		if ( isset ( $settings[$_POST['cm_ajax_widget_id']] ) ) {
+			$settings = $settings[$_POST['cm_ajax_widget_id']];
 		} else {
-			$settings = $settings[$this->number];
+			return 'FAILED\nNo Settings';
 		}
 
 		$cm = new CS_REST_Subscribers($settings['list_api_key'], $settings['account_api_key']);
@@ -158,7 +158,8 @@ class CM_ajax_widget extends WP_Widget {
 		// Main signup form
 		?>
 		<form method="POST" id="cm_ajax_form_<?php echo $this->number; ?>">
-		<input type="hidden" name="cm_ajax_action_<?php echo $this->number; ?>" value="subscribe">
+		<input type="hidden" name="cm_ajax_action" value="subscribe">
+		<input type="hidden" name="cm_ajax_widget_id" value="<?php echo $this->number; ?>">
 		<?php if (!isset($instance['show_name_field']) || $instance['show_name_field']) :  ?>
 				<p><label for="cm-ajax-name"><?php _e('Name:', 'cm_ajax'); ?></label>
 				<input class="widefat" id="cm-ajax-name" name="cm-ajax-name" type="text" /></p>
