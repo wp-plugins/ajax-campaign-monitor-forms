@@ -4,7 +4,7 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: campaign monitor, email, subscribers, mailing list 
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.9
+Stable tag: 1.0
 License: GPLv3
 
 == Description ==
@@ -56,6 +56,9 @@ Check out the ![debugging guide](http://www.leewillis.co.uk/debugging-problems-c
 6. Choosing a shortcode / creating a new shortcode
 
 == Changelog ==
+
+= 1.0 =
+Check classes aren't defined before (re)defining them. Fixes issues if you already load the CM API in another plugin
 
 = 0.9 = 
 Fixes for multiple widgets not picking up the correct settings
