@@ -230,8 +230,8 @@ class CM_ajax_shortcode {
 		<input class="widefat" id="cm-ajax-email" name="cm-ajax-email" type="text" /></p>
 
 		<p style="width: 100%; text-align: center;">
-		<span <?php echo $success_style; ?> class="cm_ajax_success">Great news, we've signed you up.</span>
-		<span <?php echo $failed_style; ?> class="cm_ajax_failed">Sorry, we weren't able to sign you up. Please check your details, and try again.<br/><br/></span>
+		<span <?php echo $success_style; ?> class="cm_ajax_success"><?php _e("Great news, we've signed you up.", 'cm_ajax'); ?></span>
+		<span <?php echo $failed_style; ?> class="cm_ajax_failed"><?php _e("Sorry, we weren't able to sign you up. Please check your details, and try again.", 'cm_ajax'); ?><br/><br/></span>
 		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/ajax-loading.gif'; ?>"></span>
 		<input <?php echo $submit_style; ?> type="submit" name="cm-ajax-submit" value="<?php _e('Register', 'cm_ajax'); ?>">
 		</p>
@@ -330,7 +330,7 @@ class CM_ajax_shortcode {
 		if ($result->was_successful()) {
 			return $result->response->Title;
 		} else {
-			return 'Unknown List';
+			return __('Unknown List', 'cm_ajax');
 		}
 
 	}
