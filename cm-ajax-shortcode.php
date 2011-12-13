@@ -217,7 +217,7 @@ class CM_ajax_shortcode {
 
 		// Main signup form
 		?>
-		<form method="POST" id="cm_ajax_shortcode_<?php echo $shortcode_id; ?>">
+		<form method="POST" class="cm_ajax_shortcode_form" id="cm_ajax_shortcode_<?php echo $shortcode_id; ?>">
 		<input type="hidden" name="cm_ajax_shortcode_action" value="subscribe">
 		<input type="hidden" name="cm_ajax_shortcode" value="<?php echo $shortcode_id; ?>">
 		<?php if ( $settings['show_name_field'] != '' &&

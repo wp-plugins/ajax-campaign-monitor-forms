@@ -157,7 +157,7 @@ class CM_ajax_widget extends WP_Widget {
 
 		// Main signup form
 		?>
-		<form method="POST" id="cm_ajax_form_<?php echo $this->number; ?>">
+		<form method="POST" class="cm_ajax_widget_form" id="cm_ajax_form_<?php echo $this->number; ?>">
 		<input type="hidden" name="cm_ajax_action" value="subscribe">
 		<input type="hidden" name="cm_ajax_widget_id" value="<?php echo $this->number; ?>">
 		<?php if (!isset($instance['show_name_field']) || $instance['show_name_field']) :  ?>
