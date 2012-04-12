@@ -5,7 +5,6 @@ Tags: campaign monitor, email, subscribers, mailing list
 Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 1.0
-License: GPLv3
 
 == Description ==
 
@@ -17,13 +16,15 @@ A WordPress plugin that adds Ajax powered forms to allow site visitors to sign u
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 Adding a form to your sidebars
+
 * Add the widgets to your sidebar from Appearance > Widgets
 * Add your account API key and list API key to the widget
 * Save
 
 Adding a form to a post or page
+
 * Edit the post/page
-* Click the "Campaign Monitor" button ![Screenshot of button](http://s.wordpress.org/extend/plugins/ajax-campaign-monitor-forms/screenshot-5.png?r=333233)
+* Click the "Campaign Monitor" button [Screenshot of button](http://s.wordpress.org/extend/plugins/ajax-campaign-monitor-forms/screenshot-5.png?r=333233)
 * Enter your account API Key and list API key
 * Save
 
@@ -41,10 +42,11 @@ The widget falls back to a standard web page request, but will still keep users 
 
 = I've published the form, but it won't sign users up =
 The most common faults are:
+
 * PHP needs to be 5.2 or above
 * Make sure you've entered the Account ID and List ID, not the Client ID 
 
-Check out the ![debugging guide](http://www.leewillis.co.uk/debugging-problems-campaign-monitor-widgets/) to find out exactly what your problem might be.
+Check out the [debugging guide](http://www.leewillis.co.uk/debugging-problems-campaign-monitor-widgets/) to find out exactly what your problem might be.
 
 == Screenshots ==
 
