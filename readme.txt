@@ -1,14 +1,14 @@
 === Plugin Name ===
 Contributors: leewillis77
 Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&utm_medium=www&utm_campaign=ajax-campaign-monitor-forms
-Tags: campaign monitor, email, subscribers, mailing list 
+Tags: campaign monitor, email, subscribers, mailing list
 Requires at least: 3.0
-Tested up to: 3.1
+Tested up to: 3.4.1
 Stable tag: 1.0
 
 == Description ==
 
-A WordPress plugin that adds Ajax powered forms to allow site visitors to sign up to your Campaign Monitor powered email lists. 
+A WordPress plugin that adds Ajax powered forms to allow site visitors to sign up to your Campaign Monitor powered email lists.
 
 == Installation ==
 
@@ -44,7 +44,7 @@ The widget falls back to a standard web page request, but will still keep users 
 The most common faults are:
 
 * PHP needs to be 5.2 or above
-* Make sure you've entered the Account ID and List ID, not the Client ID 
+* Make sure you've entered the Account ID and List ID, not the Client ID
 
 Check out the [debugging guide](http://www.leewillis.co.uk/debugging-problems-campaign-monitor-widgets/) to find out exactly what your problem might be.
 
@@ -62,7 +62,7 @@ Check out the [debugging guide](http://www.leewillis.co.uk/debugging-problems-ca
 = 1.0 =
 Check classes aren't defined before (re)defining them. Fixes issues if you already load the CM API in another plugin
 
-= 0.9 = 
+= 0.9 =
 Fixes for multiple widgets not picking up the correct settings
 
 = 0.8 =
@@ -77,23 +77,23 @@ Log debug issues for easier diagnosis of failed connections. No need to upgrade 
 = 0.7.1 =
 Tweaks for some issues with jQuery in the admin area. Should solve problems with shortcode not being inserted properly
 
-= 0.7 = 
+= 0.7 =
 Don't include services_json if class already defined
 
-= 0.6 = 
+= 0.6 =
 HTML tweaks from timvanoostrom
 
 = 0.5 =
 Small bugfixes, and allow user to pick from list of existing shortcodes
 
-= 0.4 = 
+= 0.4 =
 Add button to the editor to allow shortcode to be inserted into posts (Beta - please let me know if this works for you!)
 
-= 0.3 = 
+= 0.3 =
 Fix compatability with some themes
 
-= 0.2 = 
-Commit missing files & remove dev branch stuff 
+= 0.2 =
+Commit missing files & remove dev branch stuff
 
 = 0.1 =
 First release
