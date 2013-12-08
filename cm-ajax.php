@@ -7,6 +7,8 @@ Author: Lee Willis
 Version: 1.0
 Author URI: http://www.leewillis.co.uk/
 License: GPLv3
+Text Domain: cm_ajax
+Domain Path: /languages
 */
 
 if ( ! class_exists ( 'CS_REST_Subscribers' ) )
@@ -18,4 +20,7 @@ if ( ! class_exists ( 'CS_REST_Lists' ) )
 require_once ( 'cm-ajax-widget.php' );
 require_once ( 'cm-ajax-shortcode.php' );
 
-?>
+function cm_ajax_init(){
+	load_plugin_textdomain('cm_ajax', false, plugin_basename(dirname(__FILE__).'/languages'));
+}
+add_action('init', 'cm_ajax_init');

@@ -90,7 +90,7 @@ class CM_ajax_widget extends WP_Widget {
 		}
 
 		$result = $cm->add ( $record );
-		
+
 		if( isset ( $_POST['cm_ajax_response'] ) && $_POST['cm_ajax_response'] == 'ajax' ) {
 			if ($result->was_successful()) {
 				echo 'SUCCESS';
@@ -201,7 +201,7 @@ class CM_ajax_widget extends WP_Widget {
 					});
 				});
 		</script>
-		
+
 		<?php
 		echo $after_widget;
 
@@ -296,5 +296,3 @@ function register_cm_ajax_widget() {
 	register_widget('CM_ajax_widget');
 }
 add_action('widgets_init', 'register_cm_ajax_widget', 1);
-
-?>

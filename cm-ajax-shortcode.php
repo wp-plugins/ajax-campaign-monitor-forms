@@ -35,8 +35,8 @@ class CM_ajax_shortcode {
 		add_shortcode ( 'cm_ajax_subscribe', array ( &$this, 'cm_ajax_subscribe' ) );
 
 		if ( current_user_can ( 'edit_posts' ) && get_user_option('rich_editing') ) {
-			add_filter ( 'mce_buttons', array ( &$this, 'register_button' ) );  
-			add_filter ( 'mce_external_plugins', array (&$this, 'add_plugin' ) );  
+			add_filter ( 'mce_buttons', array ( &$this, 'register_button' ) );
+			add_filter ( 'mce_external_plugins', array (&$this, 'add_plugin' ) );
 		}
 
 	}
@@ -48,8 +48,8 @@ class CM_ajax_shortcode {
 	 */
 	function register_button($buttons) {
 
-		array_push($buttons, "cm_ajax_shortcode");  
-		return $buttons; 
+		array_push($buttons, "cm_ajax_shortcode");
+		return $buttons;
 
 	}
 
@@ -58,10 +58,10 @@ class CM_ajax_shortcode {
 	/**
 	 * Register tinymce plugin
 	 */
-	function add_plugin($plugin_array) {  
-		$plugin_array['cm_ajax_shortcode'] = WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/js/cm_ajax_shortcode.js';  
-		return $plugin_array;  
-	}  
+	function add_plugin($plugin_array) {
+		$plugin_array['cm_ajax_shortcode'] = WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/js/cm_ajax_shortcode.js';
+		return $plugin_array;
+	}
 
 
 
@@ -101,7 +101,7 @@ class CM_ajax_shortcode {
 
 
 	/**
-	 * Render the tinymce popup 
+	 * Render the tinymce popup
 	 *
 	 */
 	function render_tinymce_popup() {
@@ -157,7 +157,7 @@ class CM_ajax_shortcode {
 
 			}
 
-		} 
+		}
 
 		// Create a new shortcode id
 
@@ -262,7 +262,7 @@ class CM_ajax_shortcode {
 					});
 				});
 		</script>
-		
+
 		<?php
 
 		$contents = ob_get_contents();
@@ -280,7 +280,7 @@ class CM_ajax_shortcode {
 	 */
 	function subscribe() {
 
-		if ( ! isset ( $_REQUEST['cm_ajax_shortcode'] ) ) 
+		if ( ! isset ( $_REQUEST['cm_ajax_shortcode'] ) )
 			return 'FAILED';
 
 		$shortcode_id = $_REQUEST['cm_ajax_shortcode'];
@@ -304,7 +304,7 @@ class CM_ajax_shortcode {
 		}
 
 		$result = $cm->add ( $record );
-		
+
 		if( isset ( $_POST['cm_ajax_response'] ) && $_POST['cm_ajax_response'] == 'ajax' ) {
 			if ($result->was_successful()) {
 				echo 'SUCCESS';
@@ -326,7 +326,7 @@ class CM_ajax_shortcode {
 		$cm = new CS_REST_Lists($list_api_key, $account_api_key);
 
 		$result = $cm->get ();
-		
+
 		if ($result->was_successful()) {
 			return $result->response->Title;
 		} else {
@@ -340,5 +340,3 @@ class CM_ajax_shortcode {
 }
 
 $CM_ajax_shortcode = new CM_ajax_shortcode();
-
-?>
