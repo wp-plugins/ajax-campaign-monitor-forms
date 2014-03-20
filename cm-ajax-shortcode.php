@@ -11,8 +11,8 @@ class CM_ajax_shortcode {
 	 */
 	function __construct() {
 
-			add_action ( 'init', array ( &$this, 'init' ), 1 );
-			add_action ( 'init', array ( &$this, 'ajax_receiver' ), 2 );
+			add_action( 'init', array( $this, 'init' ), 1 );
+			add_action( 'init', array( $this, 'ajax_receiver' ), 2 );
 
 	}
 
@@ -23,11 +23,11 @@ class CM_ajax_shortcode {
      */
 	function init() {
 
-		add_shortcode ( 'cm_ajax_subscribe', array ( &$this, 'cm_ajax_subscribe' ) );
+		add_shortcode( 'cm_ajax_subscribe', array( $this, 'cm_ajax_subscribe' ) );
 
-		if ( current_user_can ( 'edit_posts' ) && get_user_option('rich_editing') ) {
-			add_filter ( 'mce_buttons', array ( &$this, 'register_button' ) );
-			add_filter ( 'mce_external_plugins', array (&$this, 'add_plugin' ) );
+		if ( current_user_can( 'edit_posts' ) && get_user_option( 'rich_editing' ) ) {
+			add_filter( 'mce_buttons', array( $this, 'register_button' ) );
+			add_filter( 'mce_external_plugins', array($this, 'add_plugin' ) );
 		}
 
 	}
@@ -37,9 +37,9 @@ class CM_ajax_shortcode {
 	/**
 	 * Add tinymce button to toolbar
 	 */
-	function register_button($buttons) {
+	function register_button( $buttons ) {
 
-		array_push($buttons, "cm_ajax_shortcode");
+		array_push( $buttons, "cm_ajax_shortcode" );
 		return $buttons;
 
 	}
@@ -49,7 +49,7 @@ class CM_ajax_shortcode {
 	/**
 	 * Register tinymce plugin
 	 */
-	function add_plugin($plugin_array) {
+	function add_plugin( $plugin_array ) {
 		$plugin_array['cm_ajax_shortcode'] = WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/js/cm_ajax_shortcode.js';
 		return $plugin_array;
 	}
@@ -68,7 +68,6 @@ class CM_ajax_shortcode {
 			return;
 
 		switch ( $_REQUEST['cm_ajax_shortcode_action'] ) {
-
 			case 'renderpopup':
 				$this->render_tinymce_popup();
 				break;
@@ -83,7 +82,7 @@ class CM_ajax_shortcode {
 				break;
 		}
 
-		if( isset ( $_REQUEST['cm_ajax_response'] ) && $_REQUEST['cm_ajax_response'] == 'ajax' ) {
+		if ( isset( $_REQUEST['cm_ajax_response'] ) && $_REQUEST['cm_ajax_response'] == 'ajax' ) {
 			die();
 		}
 
@@ -97,7 +96,7 @@ class CM_ajax_shortcode {
 	 */
 	function render_tinymce_popup() {
 
-		if ( ! current_user_can ( 'edit_posts' ) )
+		if ( ! current_user_can( 'edit_posts' ) )
 			return;
 
 		include_once('tinymce_popup.php');
@@ -112,58 +111,51 @@ class CM_ajax_shortcode {
 	 */
 	function generate_shortcode() {
 
-		if ( ! current_user_can ( 'edit_posts' ) )
+		if ( ! current_user_can( 'edit_posts' ) )
 			return;
 
-		if ( ! wp_verify_nonce ( $_POST['_wpnonce'], 'cm_ajax_generate_shortcode' ) )
+		if ( ! wp_verify_nonce( $_POST['_wpnonce'], 'cm_ajax_generate_shortcode' ) )
 			return;
 
-		$current_shortcodes = get_option ('cm_ajax_shortcodes');
+		$current_shortcodes = get_option( 'cm_ajax_shortcodes' );
 
 		$matched_shortcode = FALSE;
 
-		if (is_array($current_shortcodes) && count($current_shortcodes)) {
-
+		if ( is_array( $current_shortcodes ) && count( $current_shortcodes ) ) {
 			// Try and find it in the existing shortcodes
 			foreach ( $current_shortcodes as $shortcode_id => $shortcode ) {
-
-				if ($shortcode['account_api_key'] == $_POST['cm_ajax_tinymce_subscriber_account_api_key']
-				 && $shortcode['list_api_key'] == $_POST['cm_ajax_tinymce_subscriber_list_api_key']
-				 && $shortcode['show_name_field'] == $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ) {
-
+				if ( $shortcode['account_api_key'] == $_POST['cm_ajax_tinymce_subscriber_account_api_key']
+				  && $shortcode['list_api_key'] == $_POST['cm_ajax_tinymce_subscriber_list_api_key']
+				  && $shortcode['show_name_field'] == $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ) {
 					// Support for adding list names to the array if the shortcode was created
 					// with plugin version < 0.5
 					if ( ! isset ( $shortcode['list_name'] ) || $shortcode['list_name'] == 'Unknown List' || empty($shortcode['list_name']) ) {
-
-						$current_shortcodes[$shortcode_id]['list_name'] = $this->get_list_name($shortcode['account_api_key'], $shortcode['list_api_key']);
-						update_option ( 'cm_ajax_shortcodes', $current_shortcodes ) ;
-
+						$current_shortcodes[$shortcode_id]['list_name'] = $this->get_list_name( $shortcode['account_api_key'], $shortcode['list_api_key'] );
+						update_option( 'cm_ajax_shortcodes', $current_shortcodes );
 					}
-
 					// Found an existing shortcode - return it
 					echo $shortcode_id;
 					return;
-
 				}
-
 			}
-
 		}
 
 		// Create a new shortcode id
 
-		$current_shortcodes[] = Array ( 'account_api_key' => $_POST['cm_ajax_tinymce_subscriber_account_api_key'],
-										'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'],
-										'list_name' => $this->get_list_name ( $_POST['cm_ajax_tinymce_subscriber_account_api_key'], $_POST['cm_ajax_tinymce_subscriber_list_api_key'] ) );
+		$current_shortcodes[] = array(
+			'account_api_key' => $_POST['cm_ajax_tinymce_subscriber_account_api_key'],
+			'list_api_key' => $_POST['cm_ajax_tinymce_subscriber_list_api_key'],
+			'list_name' => $this->get_list_name( $_POST['cm_ajax_tinymce_subscriber_account_api_key'], $_POST['cm_ajax_tinymce_subscriber_list_api_key'] )
+		);
 
-		$matched_shortcode = count($current_shortcodes) - 1 ;
+		$matched_shortcode = count( $current_shortcodes ) - 1 ;
 
 		if ( isset ( $_POST['cm_ajax_tinymce_subscriber_show_name_field']) ) {
 			$current_shortcodes[$matched_shortcode]['show_name_field'] = $_POST['cm_ajax_tinymce_subscriber_show_name_field'] ;
 		}
 
 
-		update_option ('cm_ajax_shortcodes', $current_shortcodes);
+		update_option( 'cm_ajax_shortcodes', $current_shortcodes );
 
 		echo $matched_shortcode;
 
@@ -177,11 +169,10 @@ class CM_ajax_shortcode {
 	 * Parse the shortcode, and render the form
 	 *
 	 */
-	function cm_ajax_subscribe($atts,$content=null,$code="") {
-
-		$args = shortcode_atts( Array ( 'id' => '' ), $atts);
+	function cm_ajax_subscribe( $atts, $content=null, $code="" ) {
+		$args = shortcode_atts( array( 'id' => '' ), $atts );
 		$shortcode_id = $args['id'];
-		$shortcode_options = get_option ( 'cm_ajax_shortcodes' ) ;
+		$shortcode_options = get_option( 'cm_ajax_shortcodes' );
 
 		if ( ! isset ( $shortcode_options[$shortcode_id] ) )
 			return ' ';
@@ -190,8 +181,8 @@ class CM_ajax_shortcode {
 
 		ob_start();
 
-		if (isset($this->result)) {
-			if ($this->result) {
+		if ( isset( $this->result ) ) {
+			if ( $this->result ) {
 				$success_style = '';
 				$failed_style = 'style="display: none;"';
 				$submit_style = 'style="display: none;"';
@@ -275,34 +266,34 @@ class CM_ajax_shortcode {
 			return 'FAILED';
 
 		$shortcode_id = $_REQUEST['cm_ajax_shortcode'];
-		$shortcode_options = get_option ( 'cm_ajax_shortcodes' ) ;
+		$shortcode_options = get_option( 'cm_ajax_shortcodes' ) ;
 
-		if ( ! isset ( $shortcode_options[$shortcode_id] ) ) {
+		if ( ! isset( $shortcode_options[$shortcode_id] ) ) {
 			return 'FAILED\nNo Settings';
 		} else {
 			$settings = $shortcode_options[$shortcode_id];
 		}
 
-		$cm = new CS_REST_Subscribers($settings['list_api_key'], $settings['account_api_key']);
+		$cm = new CS_REST_Subscribers( $settings['list_api_key'], $settings['account_api_key'] );
 
-		$record = Array (
+		$record = array(
 			'EmailAddress' => $_POST['cm-ajax-email'],
-			'Resubscribe' => true
+			'Resubscribe' => true,
 		);
 
-		if ($settings['show_name_field']) {
+		if ( $settings['show_name_field'] ) {
 			$record['Name'] = $_POST['cm-ajax-name'];
 		}
 
-		$result = $cm->add ( $record );
+		$result = $cm->add( $record );
 
-		if( isset ( $_POST['cm_ajax_response'] ) && $_POST['cm_ajax_response'] == 'ajax' ) {
-			if ($result->was_successful()) {
+		if ( isset( $_POST['cm_ajax_response'] ) && $_POST['cm_ajax_response'] == 'ajax' ) {
+			if ( $result->was_successful() ) {
 				echo 'SUCCESS';
 			} else {
 				echo 'FAILED';
-				echo ($result->response->Code).': ';
-				echo ($result->response->Message);
+				echo ( $result->response->Code ) . ': ';
+				echo ( $result->response->Message );
 			}
 		} else {
 			$this->result = $result->was_successful();
@@ -312,16 +303,16 @@ class CM_ajax_shortcode {
 
 
 
-	function get_list_name ($account_api_key, $list_api_key) {
+	function get_list_name( $account_api_key, $list_api_key ) {
 
-		$cm = new CS_REST_Lists($list_api_key, $account_api_key);
+		$cm = new CS_REST_Lists( $list_api_key, $account_api_key );
 
-		$result = $cm->get ();
+		$result = $cm->get();
 
-		if ($result->was_successful()) {
+		if ( $result->was_successful() ) {
 			return $result->response->Title;
 		} else {
-			return __('Unknown List', 'cm_ajax');
+			return __( 'Unknown List', 'cm_ajax' );
 		}
 
 	}
