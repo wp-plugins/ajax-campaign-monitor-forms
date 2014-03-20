@@ -10,17 +10,17 @@ class CM_ajax_widget extends WP_Widget {
 	 */
 	function CM_ajax_widget() {
 
-		$widget_ops = array (
+		$widget_ops = array(
 			'classname' => 'widget_cm_ajax',
-			'description' => __( 'Ajax signup form for Campaign Monitor lists', 'cm_ajax')
+			'description' => __( 'Ajax signup form for Campaign Monitor lists', 'cm_ajax' )
 		) ;
 
-		$this->WP_Widget( 'widget_cm_ajax', __('Newsletter Signup', 'cm_ajax'), $widget_ops );
+		$this->WP_Widget( 'widget_cm_ajax', __( 'Newsletter Signup', 'cm_ajax' ), $widget_ops );
 
 		add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
 
-		add_action ( 'init', array ( &$this, 'ajax_receiver' ) );
-		add_action ( 'init', array ( &$this, 'init_actions' ) );
+		add_action( 'init', array( $this, 'ajax_receiver' ) );
+		add_action( 'init', array( $this, 'init_actions' ) );
 	}
 
 
@@ -170,7 +170,7 @@ class CM_ajax_widget extends WP_Widget {
 
 		<p style="width: 100%; text-align: center;">
 		<span <?php echo $success_style; ?> class="cm_ajax_success"><?php _e("Great news, we've signed you up.", 'cm_ajax'); ?></span>
-		<span <?php echo $failed_style; ?> class="cm_ajax_failed"><?php _e("Sorry, we weren't able to sign you up. Please check your details, and try again.", 'cm_ajax'); ?>br/><br/></span>
+		<span <?php echo $failed_style; ?> class="cm_ajax_failed"><?php _e("Sorry, we weren't able to sign you up. Please check your details, and try again.", 'cm_ajax'); ?><br/><br/></span>
 		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/ajax-loading.gif'; ?>"></span>
 		<input <?php echo $submit_style; ?> type="submit" name="cm-ajax-submit" value="<?php _e('Register', 'cm_ajax'); ?>">
 		</p>
