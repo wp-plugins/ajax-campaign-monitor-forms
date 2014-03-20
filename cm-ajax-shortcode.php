@@ -7,15 +7,6 @@ class CM_ajax_shortcode {
 
 
 	/**
-	 * PHP4 compat
-	 */
-	function CM_ajax_shortcode() {
-		$this->__construct();
-	}
-
-
-
-	/**
 	 * Constructor
 	 */
 	function __construct() {
