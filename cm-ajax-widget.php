@@ -171,7 +171,7 @@ class CM_ajax_widget extends WP_Widget {
 		<p style="width: 100%; text-align: center;">
 		<span <?php echo $success_style; ?> class="cm_ajax_success"><?php _e("Great news, we've signed you up.", 'cm_ajax'); ?></span>
 		<span <?php echo $failed_style; ?> class="cm_ajax_failed"><?php _e("Sorry, we weren't able to sign you up. Please check your details, and try again.", 'cm_ajax'); ?><br/><br/></span>
-		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/ajax-loading.gif'; ?>"></span>
+		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo plugins_url( '/ajax-loading.gif', __FILE__ ); ?>"></span>
 		<input <?php echo $submit_style; ?> type="submit" name="cm-ajax-submit" value="<?php _e('Register', 'cm_ajax'); ?>">
 		</p>
 		</form>
@@ -269,7 +269,7 @@ class CM_ajax_widget extends WP_Widget {
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
 		<p><label for="<?php echo $this->get_field_id('pretext'); ?>"><?php _e('Text before form:', 'cm_ajax'); ?></label>
-		<textarea id="<?php echo $this->get_field_id('pretext'); ?>" name="<?php echo $this->get_field_name('pretext'); ?>"><?php echo $pretext; ?></textarea></p>
+		<textarea class="widefat" id="<?php echo $this->get_field_id('pretext'); ?>" name="<?php echo $this->get_field_name('pretext'); ?>"><?php echo $pretext; ?></textarea></p>
 
 		<p><label for="<?php echo $this->get_field_id('account_api_key'); ?>"><?php _e('Account API Key:', 'cm_ajax'); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('account_api_key'); ?>" name="<?php echo $this->get_field_name('account_api_key'); ?>" type="text" value="<?php echo $account_api_key; ?>" /></p>
@@ -280,8 +280,6 @@ class CM_ajax_widget extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id('show_name_field'); ?>"><?php _e('Show name field', 'cm_ajax'); ?></label>
 		<input id="<?php echo $this->get_field_id('show_name_field'); ?>" name="<?php echo $this->get_field_name('show_name_field'); ?>" type="checkbox" <?php echo $show_name_field ? 'checked=checked' : ''; ?> /></p>
 
-		<!-- <p><label for="<?php echo $this->get_field_id('client_api_key'); ?>"><?php _e('Client API Key:', 'cm_ajax'); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id('client_api_key'); ?>" name="<?php echo $this->get_field_name('client_api_key'); ?>" type="text" value="<?php echo $client_api_key; ?>" /></p> -->
 		<?php
 	}
 

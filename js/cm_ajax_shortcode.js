@@ -5,7 +5,7 @@
 					ed.windowManager.open({
 						file: url + '/../../../../index.php?cm_ajax_shortcode=1&cm_ajax_response=ajax&cm_ajax_shortcode_action=renderpopup',
 						width : 400 + ed.getLang('example.delta_width', 0),
-						height : 400 + ed.getLang('example.delta_height', 0),
+						height : 450 + ed.getLang('example.delta_height', 0),
 				        inline : 1
 						}, {
 							plugin_url : url

@@ -39,7 +39,7 @@ class CM_ajax_shortcode {
 	 */
 	function register_button( $buttons ) {
 
-		array_push( $buttons, "cm_ajax_shortcode" );
+		array_push( $buttons, 'cm_ajax_shortcode' );
 		return $buttons;
 
 	}
@@ -50,7 +50,7 @@ class CM_ajax_shortcode {
 	 * Register tinymce plugin
 	 */
 	function add_plugin( $plugin_array ) {
-		$plugin_array['cm_ajax_shortcode'] = WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/js/cm_ajax_shortcode.js';
+		$plugin_array['cm_ajax_shortcode'] = plugins_url( '/js/cm_ajax_shortcode.js', __FILE__ );
 		return $plugin_array;
 	}
 
@@ -214,7 +214,7 @@ class CM_ajax_shortcode {
 		<p style="width: 100%; text-align: center;">
 		<span <?php echo $success_style; ?> class="cm_ajax_success"><?php _e("Great news, we've signed you up.", 'cm_ajax'); ?></span>
 		<span <?php echo $failed_style; ?> class="cm_ajax_failed"><?php _e("Sorry, we weren't able to sign you up. Please check your details, and try again.", 'cm_ajax'); ?><br/><br/></span>
-		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo WP_PLUGIN_URL.'/ajax-campaign-monitor-forms/ajax-loading.gif'; ?>"></span>
+		<span style="display:none;" class="cm_ajax_loading"><img alt="Loading..." src="<?php echo plugins_url( '/ajax-loading.gif', __FILE__ ); ?>"></span>
 		<input <?php echo $submit_style; ?> type="submit" name="cm-ajax-submit" value="<?php _e('Register', 'cm_ajax'); ?>">
 		</p>
 		</form>
