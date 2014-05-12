@@ -3,8 +3,8 @@ Contributors: leewillis77
 Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&utm_medium=www&utm_campaign=ajax-campaign-monitor-forms
 Tags: campaign monitor, email, subscribers, mailing list
 Requires at least: 3.8
-Tested up to: 3.8.1
-Stable tag: 1.2
+Tested up to: 3.9.1
+Stable tag: 1.3
 
 == Description ==
 
@@ -58,6 +58,10 @@ Check out the [debugging guide](http://www.leewillis.co.uk/debugging-problems-ca
 6. Choosing a shortcode / creating a new shortcode
 
 == Changelog ==
+
+= 1.3 =
+Use latest Campaign Monitor API
+Some UI tweaks in the admin area
 
 = 1.2 =
 Don't throw warnings on more recent PHP versions
