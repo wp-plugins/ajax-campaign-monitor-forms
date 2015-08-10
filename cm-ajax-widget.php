@@ -15,7 +15,7 @@ class CM_ajax_widget extends WP_Widget {
 			'description' => __( 'Ajax signup form for Campaign Monitor lists', 'cm_ajax' )
 		) ;
 
-		$this->WP_Widget( 'widget_cm_ajax', __( 'Newsletter Signup', 'cm_ajax' ), $widget_ops );
+		parent::__construct( 'widget_cm_ajax', __( 'Newsletter Signup', 'cm_ajax' ), $widget_ops );
 
 		add_action( 'switch_theme', array(&$this, 'flush_widget_cache') );
 
